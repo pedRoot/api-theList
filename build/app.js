@@ -49,14 +49,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 // Configuring the app
 var app = (0, _express.default)();
-// run.createRole();
-// run.createMeeting();
-// run.createDraw();
-// run.createUser();
+run.createRole();
+run.createMeeting();
+run.createDraw();
+run.createUser();
 app.set('pkg', _package.default);
 app.use((0, _morgan.default)('dev'));
 app.use(_express.default.json()); // routes
-//import productRoutes from './routes/product.routes'
 
 app.get('/', function (req, res) {
   res.json({
@@ -66,8 +65,7 @@ app.get('/', function (req, res) {
     "version": app.get('pkg').version
   });
   console.log('Epale chamo esto está yendo bien...');
-}); // app.use('/api/v1/products', productRoutes)
-
+});
 app.use('/api/v1/auth', _auth.default);
 app.use('/api/v1/users', _user.default);
 app.use('/api/v1/draws', _draw.default);

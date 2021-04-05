@@ -1,5 +1,7 @@
 "use strict";
 
+require("core-js/modules/es.array.concat.js");
+
 var _app = _interopRequireDefault(require("./app.js"));
 
 require("./config/database");
@@ -10,6 +12,10 @@ require("regenerator-runtime/runtime");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_app.default.listen(3000);
+var port = process.env.port || 80;
 
-console.log('Server listen on port:', 3000);
+var env = _app.default.get('env');
+
+_app.default.listen(port, function () {
+  return console.log("App server listen on port: ".concat(port, ", for ").concat(env));
+});

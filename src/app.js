@@ -6,10 +6,10 @@ import pkg from '../package.json'
 const app = express()
 
 import * as run from "./libs/setupScripts";
-run.createRole();
-run.createMeeting();
-run.createDraw();
-run.createUser();
+// run.createRole();
+// run.createMeeting();
+// run.createDraw();
+// run.createUser();
 
 app.set('pkg', pkg)
 

@@ -5,6 +5,9 @@ logs
 #Edit config
 .editorconfig
 
+#build
+build
+
 # Runtime data
 pids
 *.pid

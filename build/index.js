@@ -12,7 +12,7 @@ require("regenerator-runtime/runtime");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var port = process.env.port || 80;
+var port = process.env.port || 3580;
 
 var env = _app.default.get('env');
 

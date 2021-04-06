@@ -1,9 +1,7 @@
-import app from './app.js';
-import './config/database';
-import "core-js/stable";
+import app from './app.js'
+import './config/database'
+import "core-js/stable"
 import "regenerator-runtime/runtime";
+import conf from './config/config-env'
 
-const port = process.env.port || 3580
-const env = app.get('env')
-
-app.listen(port, () => console.log(`App server listen on port: ${port}, for ${env}`))
+app.listen(conf.PORT, () => console.log(`App server listen on port: ${conf.PORT}, for ${conf.NODE_ENV}`))

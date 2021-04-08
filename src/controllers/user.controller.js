@@ -34,10 +34,16 @@ export const update = async (req, res) => {
       req.body.pasword = await argon2.hash(password);
     }
 
-    const user = await User.findOneAndUpdate({ email: req.body.email }, req.body, { upsert: false, returnNewDocument: true });
-    if (!user) throw new Error(`User (${req.body.email}) not found...!!!`);
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) throw new Error(`User (${req.body.email}) not found...!!!`)
 
-    res.status(200).json(user);
+    if (req.body.password ) user.password = req.body.password
+    if (req.body.wasSelected) user.wasSelected = req.body.wasSelected
+    if (req.body.isActive) user.isActive = req.body.isActive
+
+    user.save()
+
+    res.status(200).json(user)
 
   } catch (error) {
     console.error('Error in update user: ', error.name + ': ' + error.message);

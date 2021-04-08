@@ -34,6 +34,8 @@ export const update = async (req, res) => {
       req.body.pasword = await argon2.hash(password);
     }
 
+    if (user.body.email) throw new Error(`User (${req.body.email}) is blocked ...!!!`)
+
     const user = await User.findOne({ email: req.body.email })
     if (!user) throw new Error(`User (${req.body.email}) not found...!!!`)
 
@@ -41,7 +43,7 @@ export const update = async (req, res) => {
     if (req.body.wasSelected) user.wasSelected = req.body.wasSelected
     if (req.body.isActive) user.isActive = req.body.isActive
 
-    user.save()
+    await user.save()
 
     res.status(200).json(user)
 

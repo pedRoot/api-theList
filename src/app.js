@@ -5,11 +5,11 @@ import pkg from '../package.json'
 
 const app = express()
 
-import * as run from "./libs/setupScripts";
-run.createRole();
-run.createMeeting();
-run.createDraw();
-run.createUser();
+// import * as run from "./libs/setupScripts";
+// run.createRole();
+// run.createMeeting();
+// run.createDraw();
+// run.createUser();
 
 app.set('pkg', pkg)
 
@@ -17,9 +17,9 @@ app.use(morgan('dev'))
 app.use(express.json())
 
 // routes
-import authRoutes from './routes/auth.routes'
-import userRoutes from './routes/user.routes'
-import drawRoutes from './routes/draw.routes'
+import authRoutes from './routes/auth.route'
+import userRoutes from './routes/user.route'
+import drawRoutes from './routes/draw.route'
 
 app.get('/', (req, res) => {
   res.json({

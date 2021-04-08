@@ -10,12 +10,10 @@ require("core-js/stable");
 
 require("regenerator-runtime/runtime");
 
+var _configEnv = _interopRequireDefault(require("./config/config-env"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var port = process.env.port || 3580;
-
-var env = _app.default.get('env');
-
-_app.default.listen(port, function () {
-  return console.log("App server listen on port: ".concat(port, ", for ").concat(env));
+_app.default.listen(_configEnv.default.PORT, function () {
+  return console.log("App server listen on port: ".concat(_configEnv.default.PORT, ", for ").concat(_configEnv.default.NODE_ENV));
 });

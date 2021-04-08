@@ -134,43 +134,55 @@ var update = /*#__PURE__*/function () {
             req.body.pasword = _context2.sent;
 
           case 9:
-            _context2.next = 11;
-            return _User.default.findOneAndUpdate({
-              email: req.body.email
-            }, req.body, {
-              upsert: false,
-              returnNewDocument: true
-            });
+            if (!user.body.email) {
+              _context2.next = 11;
+              break;
+            }
+
+            throw new Error("User (".concat(req.body.email, ") is blocked ...!!!"));
 
           case 11:
+            _context2.next = 13;
+            return _User.default.findOne({
+              email: req.body.email
+            });
+
+          case 13:
             user = _context2.sent;
 
             if (user) {
-              _context2.next = 14;
+              _context2.next = 16;
               break;
             }
 
             throw new Error("User (".concat(req.body.email, ") not found...!!!"));
 
-          case 14:
-            res.status(200).json(user);
+          case 16:
+            if (req.body.password) user.password = req.body.password;
+            if (req.body.wasSelected) user.wasSelected = req.body.wasSelected;
+            if (req.body.isActive) user.isActive = req.body.isActive;
             _context2.next = 21;
+            return user.save();
+
+          case 21:
+            res.status(200).json(user);
+            _context2.next = 28;
             break;
 
-          case 17:
-            _context2.prev = 17;
+          case 24:
+            _context2.prev = 24;
             _context2.t0 = _context2["catch"](0);
             console.error('Error in update user: ', _context2.t0.name + ': ' + _context2.t0.message);
             res.status(500).json({
               "message": _context2.t0.message
             });
 
-          case 21:
+          case 28:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 17]]);
+    }, _callee2, null, [[0, 24]]);
   }));
 
   return function update(_x3, _x4) {

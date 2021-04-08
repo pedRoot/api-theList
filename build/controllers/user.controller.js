@@ -122,24 +122,24 @@ var update = /*#__PURE__*/function () {
             throw new Error('Unspecified mailing address...!!!');
 
           case 5:
-            if (!req.body.pasword) {
-              _context2.next = 9;
-              break;
-            }
-
-            _context2.next = 8;
-            return _argon.default.hash(password);
-
-          case 8:
-            req.body.pasword = _context2.sent;
-
-          case 9:
-            if (!user.body.email) {
-              _context2.next = 11;
+            if (!(req.body.email == 'admin@localhost')) {
+              _context2.next = 7;
               break;
             }
 
             throw new Error("User (".concat(req.body.email, ") is blocked ...!!!"));
+
+          case 7:
+            if (!req.body.pasword) {
+              _context2.next = 11;
+              break;
+            }
+
+            _context2.next = 10;
+            return _argon.default.hash(password);
+
+          case 10:
+            req.body.pasword = _context2.sent;
 
           case 11:
             _context2.next = 13;

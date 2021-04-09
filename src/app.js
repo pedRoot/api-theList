@@ -13,7 +13,7 @@ run.createDraw();
 run.createUser();
 
 Sentry.init({
-  dns: "https://1d155a81c4c148bca3b44ef3bf6d6700@o568415.ingest.sentry.io/5713468",
+  dns: "https://555d24e190a5442c9e4623cf48c3a5cc@o568415.ingest.sentry.io/5713503",
   integrations: [
     new Sentry.Integrations.Http({ tracing: true }),
     new Tracing.Integrations.Express({ app }),
@@ -25,7 +25,6 @@ app.use(Sentry.Handlers.requestHandler({
   serverName: false,
   user: ["email"],
 }))
-app.use(Sentry.Handlers.tracingHandler())
 
 app.set('pkg', pkg)
 
@@ -55,6 +54,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 })
 
+app.use(Sentry.Handlers.tracingHandler())
 app.use(Sentry.Handlers.errorHandler())
 
 app.use(function onError(err, req, res, next) {

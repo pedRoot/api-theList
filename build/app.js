@@ -57,18 +57,24 @@ run.createMeeting();
 run.createDraw();
 run.createUser();
 Sentry.init({
-  dns: "https://555d24e190a5442c9e4623cf48c3a5cc@o568415.ingest.sentry.io/5713503",
-  integrations: [new Sentry.Integrations.Http({
+  dsn: "https://555d24e190a5442c9e4623cf48c3a5cc@o568415.ingest.sentry.io/5713503",
+  integrations: [// enable HTTP calls tracing
+  new Sentry.Integrations.Http({
     tracing: true
-  }), new Tracing.Integrations.Express({
+  }), // enable Express.js middleware tracing
+  new Tracing.Integrations.Express({
     app: app
   })],
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
   tracesSampleRate: 1.0
 });
 app.use(Sentry.Handlers.requestHandler({
   serverName: false,
   user: ["email"]
 }));
+app.use(Sentry.Handlers.tracingHandler());
 app.set('pkg', _package.default);
 app.use((0, _morgan.default)('dev'));
 app.use(_express.default.json()); // routes
@@ -88,7 +94,6 @@ app.use('/api/v1/draws', _draw.default);
 app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
-app.use(Sentry.Handlers.tracingHandler());
 app.use(Sentry.Handlers.errorHandler());
 app.use(function onError(err, req, res, next) {
   res.statusCode = 500;

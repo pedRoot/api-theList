@@ -51,6 +51,10 @@ app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userRoutes)
 app.use('/api/v1/draws', drawRoutes)
 
+app.get("/debug-sentry", function mainHandler(req, res) {
+  throw new Error("My first Sentry error!");
+})
+
 app.use(Sentry.Handlers.errorHandler())
 
 app.use(function onError(err, req, res, next) {

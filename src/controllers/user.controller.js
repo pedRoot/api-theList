@@ -27,8 +27,8 @@ export const update = async (req, res) => {
 
   try {
 
-    if (Object.keys(req.body).length == 0) throw new Error('Unspecified values');
-    if (!req.body.email) throw new Error('Unspecified mailing address...!!!');
+    if (Object.keys(req.body).length == 0) throw new Error('Unspecified values')
+    if (!req.body.email) throw new Error('Unspecified mailing address...!!!')
     if (req.body.email == 'admin@localhost') throw new Error(`User (${req.body.email}) is blocked ...!!!`)
     if (req.body.pasword) req.body.pasword = await argon2.hash(password);
 

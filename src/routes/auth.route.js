@@ -5,6 +5,6 @@ import {authJWT} from '../middlewares'
 const router = Router()
 
 router.post('/signup', [authJWT.verifyToken, authJWT.isAdmin], authController.signup)
-router.get('/signin', authController.signin)
+router.post('/signin', authController.signin)
 
 export default router;

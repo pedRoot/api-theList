@@ -13,9 +13,9 @@ require("core-js/modules/es.array.map.js");
 
 require("core-js/modules/es.function.name.js");
 
-require("core-js/modules/es.promise.js");
-
 require("core-js/modules/es.object.to-string.js");
+
+require("core-js/modules/es.promise.js");
 
 var _User = _interopRequireDefault(require("../models/User"));
 

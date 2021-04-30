@@ -13,13 +13,13 @@ require("core-js/modules/es.array.includes.js");
 
 require("core-js/modules/es.string.includes.js");
 
-require("core-js/modules/es.string.split.js");
-
 require("core-js/modules/es.regexp.exec.js");
 
-require("core-js/modules/es.promise.js");
+require("core-js/modules/es.string.split.js");
 
 require("core-js/modules/es.object.to-string.js");
+
+require("core-js/modules/es.promise.js");
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 

@@ -3,8 +3,11 @@ import morgan from 'morgan'
 import pkg from '../package.json'
 import * as Sentry from "@sentry/node"
 import * as Tracing from "@sentry/tracing"
+import cors from "cors"
 
 const app = express()
+
+app.use(cors())
 
 import * as run from "./libs/setupScripts";
 run.createRole();
@@ -20,7 +23,7 @@ Sentry.init({
     // enable Express.js middleware tracing
     new Tracing.Integrations.Express({ app }),
   ],
-  
+
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
@@ -52,8 +55,8 @@ app.get('/', (req, res) => {
   });
 })
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://novolist.netlify.app/"); // update to match the domain you will make the request from
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });

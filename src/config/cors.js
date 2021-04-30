@@ -8,7 +8,7 @@ const corsOptions = {
       callback(null, true)
     } else {
     if (whileList.indexOf(origin) !== -1 || !origin) {
-      callback(new Error(`Not allowed by CORS: ${origin} || ${conf.URL_FRONT}`))
+      callback(new Error(`Not allowed by CORS: ${origin} || ${conf.URL_FRONT}..`))
     }
   }
 }

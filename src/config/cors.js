@@ -1,5 +1,5 @@
 
-import conf from './config/config-env'
+import conf from 'config-env'
 
 const whileList = [conf.URL_FRONT]
 

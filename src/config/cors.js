@@ -1,8 +1,8 @@
-import conf from 'config-env'
+import conf from "./config-env"
 
 const whileList = [conf.URL_FRONT]
 
-export default corsOptions = {
+const corsOptions = {
   origin: function (origin, callback) {
     if (whileList.indexOf(origin) !== -1 || !origin) {
       callback(null, true)
@@ -11,3 +11,5 @@ export default corsOptions = {
     }
   }
 }
+
+export default corsOptions;

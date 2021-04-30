@@ -19,15 +19,9 @@ run.createUser();
 Sentry.init({
   dsn: "https://555d24e190a5442c9e4623cf48c3a5cc@o568415.ingest.sentry.io/5713503",
   integrations: [
-    // enable HTTP calls tracing
     new Sentry.Integrations.Http({ tracing: true }),
-    // enable Express.js middleware tracing
     new Tracing.Integrations.Express({ app }),
   ],
-
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
 
@@ -55,12 +49,6 @@ app.get('/', (req, res) => {
     "version": app.get('pkg').version
   });
 })
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', userRoutes)

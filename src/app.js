@@ -8,7 +8,7 @@ import cors from "cors"
 const app = express()
 
 app.use(cors())
-app.options('*', cors())
+//app.options('*', cors())
 
 import * as run from "./libs/setupScripts";
 run.createRole();
